@@ -1,6 +1,6 @@
 {
 	"Directory":"C:\\Users\\amitm\\OneDrive\\Documents\\Projects\\hugo\\mySite",
-	"SiteName":"MyFirstsite",
+	"sitename":"MyFirstsite",
 	"Server":{
 		"Port":8000
 		}

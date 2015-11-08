@@ -1,10 +1,10 @@
 [
    
-    { "caption": "Preferences: Package Settings: Hugofy : New Site", "command": "hugonewsite" },
-    { "caption": "Preferences: Package Settings: Hugofy : New Post", "command": "hugonewcontent"},
-    { "caption": "Preferences: Package Settings: Hugofy : Version", "command": "hugoversion"},
-    { "caption": "Preferences: Package Settings: Hugofy : Build", "command": "hugobuild"},
-    { "caption": "Preferences: Package Settings: Hugofy : Start Server", "command": "hugoserver"},
-    { "caption": "Preferences: Package Settings: Hugofy : Set Theme", "command": "hugosettheme"},
-    { "caption": "Preferences: Package Settings: Hugofy : Download themes", "command": "hugogetthemes"},
+    { "caption": "Hugofy : New Site", "command": "hugonewsite" },
+    { "caption": "Hugofy : New Post", "command": "hugonewcontent"},
+    { "caption": "Hugofy : Version", "command": "hugoversion"},
+    { "caption": "Hugofy : Build", "command": "hugobuild"},
+    { "caption": "Hugofy : Start Server", "command": "hugoserver"},
+    { "caption": "Hugofy : Set Theme", "command": "hugosettheme"},
+    { "caption": "Hugofy : Download themes", "command": "hugogetthemes"},
 ]

@@ -7,7 +7,7 @@ def setvars():
 		seprator="\\"
 	else:
 		seprator="/"
-	settings=sublime.load_settings("hugofy-settings")
+	settings=sublime.load_settings("hugofy.sublime-settings")
 	path=settings.get("Directory")
 	
 	sitename=settings.get("Sitename")
@@ -81,7 +81,7 @@ class HugosetthemeCommand(sublime_plugin.TextCommand):
 			sublime.error_message("No theme name provided")
 		else:
 			settings.set("DefaultTheme",themename)
-			sublime.save_settings("hugofy-settings")
+			sublime.save_settings("hugofy.sublime-settings")
 
 	def on_change(self,themename):
 		pass

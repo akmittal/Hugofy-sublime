@@ -17,14 +17,14 @@
 								"caption": "Settings – Default",
 								"command": "open_file",
 								"args": {
-									"file": "${packages}/Hugofy/Hugofy.sublime-settings"
+									"file": "${packages}/Hugofy/hugofy.sublime-settings"
 								}
 							},
 							{
 								"caption": "Settings – User",
 								"command": "open_file",
 								"args": {
-									"file": "${packages}/User/Hugofy.sublime-settings"
+									"file": "${packages}/User/hugofy.sublime-settings"
 								}
 							},
 							{ "caption": "-" },

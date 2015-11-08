@@ -1,26 +1,24 @@
 import sublime, sublime_plugin,subprocess,os
 
-class setvars:
-	def __init__(self):
-		self.platform=sublime.platform()
-		if self.platform=="windows":
-			self.seprator="\\"
-		else:
-			self.seprator="/"
-		self.settings=sublime.load_settings("hugofy-settings")
-		self.path=self.settings.get("Directory")
-		
-		self.sitename=self.settings.get("sitename")	
-		if not os.path.exists(self.path+self.seprator+self.sitename):
-			 os.makedirs(self.path+self.seprator+self.sitename)
-		os.chdir(self.path+self.seprator+self.sitename)
+def setvars():
+	global platform,seprator,settings,path,sitename
+	platform=sublime.platform()
+	if platform=="windows":
+		seprator="\\"
+	else:
+		seprator="/"
+	settings=sublime.load_settings("hugofy-settings")
+	path=settings.get("Directory")
+	
+	sitename=settings.get("Sitename")
+	print(path,seprator,sitename)	
+	if not os.path.exists(path+seprator+sitename):
+		 os.makedirs(path+seprator+sitename)
+	os.chdir(path+seprator+sitename)
 
 class HugonewsiteCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		var=setvars()
-		seprator=var.seprator
-		path=var.path
-		sitename=var.sitename
+		setvars()
 		process="hugo new site "+path+seprator+sitename
 		subprocess.Popen(process)
 
@@ -30,18 +28,13 @@ class HugonewcontentCommand(sublime_plugin.TextCommand):
 			sublime.error_message("No filename provided")
 		process="hugo new "+pagename
 		subprocess.Popen(process)
-		sublime.active_window().open_file(self.path+self.seprator+self.sitename+self.seprator+"content"+self.seprator+pagename)
+		sublime.active_window().open_file(path+seprator+sitename+seprator+"content"+seprator+pagename)
 	def on_change(self,filename):
 		pass
 	def on_cancel(self):
 		sublime.error_message("No filename provided")
 	def run(self,edit):
-		var=setvars()
-		self.seprator=var.seprator
-		self.path=var.path
-		self.sitename=var.sitename
-		print(self.path,self.seprator,self.sitename)
-		
+		setvars()
 		sublime.active_window().show_input_panel("Enter file name", "", self.on_done, self.on_change, self.on_cancel)
 
 class HugoversionCommand(sublime_plugin.TextCommand):
@@ -50,15 +43,18 @@ class HugoversionCommand(sublime_plugin.TextCommand):
 			out=subprocess.check_output("hugo version",stderr=subprocess.STDOUT,universal_newlines=True)
 			sublime.message_dialog(out)
 		except:
-			sublime.error_message("Hugo not installed")
+			sublime.error_message("Hugo not installed or path not set")
 
 class HugoserverCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
+		setvars()
+		server=settings.get("Server")
+		theme=settings.get("DefaultTheme")
 		try:
-			out=subprocess.Popen("hugo server --buildDrafts --watch",stderr=subprocess.STDOUT,universal_newlines=True)
+			out=subprocess.Popen("hugo server --theme="+theme+"--buildDrafts --watch --port="+server["PORT"],stderr=subprocess.STDOUT,universal_newlines=True)
 			sublime.status_message(out)
 		except:
-			sublime.error_message("Hugo not installed")
+			sublime.error_message("Error starting server")
 
 
 class HugobuildCommand(sublime_plugin.TextCommand):
@@ -69,3 +65,30 @@ class HugobuildCommand(sublime_plugin.TextCommand):
 			sublime.message_dialog(out.communicate()[0].decode('utf-8'))
 		except:
 			sublime.error_message("Hugo not installed")
+
+class HugogetthemesCommand(sublime_plugin.TextCommand):
+	"""download themes for hugo"""
+	def run(self,edit):
+		setvars()
+		try:
+			out=subprocess.Popen("git clone --recursive https://github.com/spf13/hugoThemes.git themes",stderr=subprocess.STDOUT,universal_newlines=True)
+		except:
+			sublime.error_message("git not installed or path not set")
+
+class HugosetthemeCommand(sublime_plugin.TextCommand):
+	def on_done(self,themename):
+		if not themename:
+			sublime.error_message("No theme name provided")
+		else:
+			settings.set("DefaultTheme",themename)
+			sublime.save_settings("hugofy-settings")
+
+	def on_change(self,themename):
+		pass
+	def on_cancel(self):
+		pass
+
+	def run(self,edit):
+		setvars()
+		sublime.active_window().show_input_panel("Enter theme name", "", self.on_done, self.on_change, self.on_cancel)
+		

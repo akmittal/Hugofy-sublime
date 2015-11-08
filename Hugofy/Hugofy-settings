@@ -1,7 +1,14 @@
 {
-	"Directory":"C:\\Users\\amitm\\OneDrive\\Documents\\Projects\\hugo\\mySite",
-	"sitename":"MyFirstsite",
-	"Server":{
-		"Port":8000
-		}
+	//name of theme to run hugo with
+	"DefaultTheme": "bootstrap",
+	//root directory for hugo website use double backwork slash for windows
+	//e.g. windows C:\\Users\\myusername\\
+	//e.g. Linux/Mac /home/myusername
+	"Directory": "C:\\Users\\amitm\\OneDrive\\Documents\\Projects\\hugo\\mySite",
+	"Server":
+	{
+		"PORT": 8000 //server port number
+	},
+	//website name
+	"Sitename": "MyFirstsite"  
 }

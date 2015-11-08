@@ -1,0 +1,90 @@
+[
+	{
+		"caption": "Preferences",
+		"id": "preferences",
+		"children":
+		[
+			{
+				"caption": "Package Settings",
+				"id": "package-settings",
+				"children":
+				[
+					{
+						"caption": "Hugofy",
+						"children":
+						[
+							{
+								"caption": "Settings – Default",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/Hugofy/Hugofy.sublime-settings"
+								}
+							},
+							{
+								"caption": "Settings – User",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/User/Hugofy.sublime-settings"
+								}
+							},
+							{ "caption": "-" },
+							{
+								"caption": "Key Bindings – Default",
+								
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/Hugofy/Hugofy.sublime-keymap"
+								}
+							},
+							
+							{ "caption": "-" },
+							{
+								"caption": "Changes & Announcements",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/Hugofy/CHANGELOG.md"
+								}
+							},
+							{ "caption": "-" },
+							{
+								"caption": "Read Me",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/Hugofy/README.md"
+								}
+							},
+							{
+								"caption": "Usage & Tips",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/Hugofy/USAGE.md"
+								}
+							},
+							{ "caption": "-" },
+							{
+								"caption": "Authors & Contributors",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/Hugofy/AUTHORS.md"
+								}
+							},
+							{
+								"caption": "License (MIT)",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/Hugofy/LICENSE.md"
+								}
+							},
+							{ "caption": "-" },
+							{
+								"caption": "Open Log File",
+								"command": "gs_open_home_path",
+								"args": { "fn": "log.txt" }
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

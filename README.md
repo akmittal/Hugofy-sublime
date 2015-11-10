@@ -11,7 +11,7 @@ Hugofy is a plugin for Sublime Text 3 to make life easier to use [Hugo static si
 
 #Installation
 *	Download this repo as zip and extract it in {packages} Directory
-*	Use Package manager(Not vailable for now)
+*	Use Package manager(Not available for now)
 
 
 #Usage

@@ -64,7 +64,7 @@ class HugogetthemesCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
 		setvars()
 		try:
-			out=subprocess.Popen("git clone --recursive https://github.com/spf13/hugoThemes.git themes",stderr=subprocess.STDOUT,universal_newlines=True)
+			out=subprocess.Popen("git clone --recursive https://github.com/spf13/hugoThemes.git "+os.path.join(path,sitename,"themes"),stderr=subprocess.STDOUT,universal_newlines=True)
 		except:
 			sublime.error_message("git not installed or path not set")
 

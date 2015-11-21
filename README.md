@@ -11,10 +11,10 @@ Hugofy is a plugin for Sublime Text 3 to make life easier to use [Hugo static si
 
 #Installation
 *	Download this repo as zip and extract it in {packages} Directory
-*	Use Package manager(Not available for now)
+*	Use [Package control](https://packagecontrol.io/installation)
 
 
 #Usage
-Use command pallete ```Ctrl+Shift+P``` and type Hugo
+Use command pallete ```Ctrl+Shift+P``` and type Hugofy
 ![Hugofy](http://i.imgur.com/2pAaB5f.png)
 

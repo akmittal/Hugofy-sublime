@@ -33,7 +33,7 @@ class HugonewcontentCommand(sublime_plugin.TextCommand):
 class HugoversionCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
 		try:
-			out=subprocess.check_output("hugo version",stderr=subprocess.STDOUT,universal_newlines=True)
+			out=subprocess.check_output(["hugo", "version"],stderr=subprocess.STDOUT,universal_newlines=True)
 			sublime.message_dialog(out)
 		except:
 			sublime.error_message("Hugo not installed or path not set")

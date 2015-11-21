@@ -1,25 +1,18 @@
 import sublime, sublime_plugin,subprocess,os
 
 def setvars():
-	global platform,seprator,settings,path,sitename
-	platform=sublime.platform()
-	if platform=="windows":
-		seprator="\\"
-	else:
-		seprator="/"
+	global settings,path,sitename
 	settings=sublime.load_settings("hugofy.sublime-settings")
 	path=settings.get("Directory")
-	
 	sitename=settings.get("Sitename")
-	print(path,seprator,sitename)	
-	if not os.path.exists(path+seprator+sitename):
-		 os.makedirs(path+seprator+sitename)
-	os.chdir(path+seprator+sitename)
+	if not os.path.exists(os.path.join(path,sitename)):
+		 os.makedirs(os.path.join(path,sitename))
+	os.chdir(os.path.join(path,sitename))
 
 class HugonewsiteCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		setvars()
-		process="hugo new site "+path+seprator+sitename
+		process="hugo new site "+os.path.join(path,sitename)
 		subprocess.Popen(process)
 
 class HugonewcontentCommand(sublime_plugin.TextCommand):
@@ -28,7 +21,7 @@ class HugonewcontentCommand(sublime_plugin.TextCommand):
 			sublime.error_message("No filename provided")
 		process="hugo new "+pagename
 		subprocess.Popen(process)
-		sublime.active_window().open_file(path+seprator+sitename+seprator+"content"+seprator+pagename)
+		sublime.active_window().open_file(os.path.join(path,sitename,"content",pagename))
 	def on_change(self,filename):
 		pass
 	def on_cancel(self):
@@ -71,7 +64,7 @@ class HugogetthemesCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
 		setvars()
 		try:
-			out=subprocess.Popen("git clone --recursive https://github.com/spf13/hugoThemes.git themes",stderr=subprocess.STDOUT,universal_newlines=True)
+			out=subprocess.Popen("git clone --recursive https://github.com/spf13/hugoThemes.git "+os.path.join(path,sitename,"themes"),stderr=subprocess.STDOUT,universal_newlines=True)
 		except:
 			sublime.error_message("git not installed or path not set")
 

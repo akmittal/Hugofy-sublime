@@ -18,3 +18,5 @@ Hugofy is a plugin for Sublime Text 3 to make life easier to use [Hugo static si
 Use command pallete ```Ctrl+Shift+P``` and type Hugofy
 ![Hugofy](http://i.imgur.com/2pAaB5f.png)
 
+Feel free to request a new feature or send a pull request.
+

@@ -44,8 +44,9 @@ class HugoserverCommand(sublime_plugin.TextCommand):
 		server=settings.get("Server")
 		theme=settings.get("DefaultTheme")
 		try:
-			out=subprocess.Popen("hugo server --theme="+theme+"--buildDrafts --watch --port="+server["PORT"],stderr=subprocess.STDOUT,universal_newlines=True)
-			sublime.status_message(out)
+			startCmd = "hugo server --theme={} --buildDrafts --watch --port={}".format(theme, server["PORT"])
+			out=subprocess.Popen(startCmd,stderr=subprocess.STDOUT,universal_newlines=True)
+			sublime.status_message('Server Started: {}'.format(startCmd))
 		except:
 			sublime.error_message("Error starting server")
 

@@ -12,14 +12,14 @@ def setvars():
 class HugonewsiteCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		setvars()
-		process="hugo new site "+os.path.join(path,sitename)
+		process=["hugo", "new", "site", os.path.join(path,sitename)]
 		subprocess.Popen(process)
 
 class HugonewcontentCommand(sublime_plugin.TextCommand):
 	def on_done(self,pagename):
 		if not pagename:
 			sublime.error_message("No filename provided")
-		process="hugo new "+pagename
+		process=["hugo", "new", pagename]
 		subprocess.Popen(process)
 		sublime.active_window().open_file(os.path.join(path,sitename,"content",pagename))
 	def on_change(self,filename):
@@ -44,7 +44,7 @@ class HugoserverCommand(sublime_plugin.TextCommand):
 		server=settings.get("Server")
 		theme=settings.get("DefaultTheme")
 		try:
-			startCmd = "hugo server --theme={} --buildDrafts --watch --port={}".format(theme, server["PORT"])
+			startCmd = ["hugo", "server", "--theme={}".format(theme), "--buildDrafts", "--watch", "--port={}".format(server["PORT"])]
 			out=subprocess.Popen(startCmd,stderr=subprocess.STDOUT,universal_newlines=True)
 			sublime.status_message('Server Started: {}'.format(startCmd))
 		except:
@@ -54,7 +54,7 @@ class HugoserverCommand(sublime_plugin.TextCommand):
 class HugobuildCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
 		try:
-			out=subprocess.Popen("hugo --buildDrafts",stdout=subprocess.PIPE)
+			out=subprocess.Popen(["hugo", "--buildDrafts"],stdout=subprocess.PIPE)
 			#print(out.communicate()[0].decode('utf-8'))
 			sublime.message_dialog(out.communicate()[0].decode('utf-8'))
 		except:
@@ -65,7 +65,7 @@ class HugogetthemesCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
 		setvars()
 		try:
-			out=subprocess.Popen("git clone --recursive https://github.com/spf13/hugoThemes.git "+os.path.join(path,sitename,"themes"),stderr=subprocess.STDOUT,universal_newlines=True)
+			out=subprocess.Popen(["git", "clone", "--recursive", "https://github.com/spf13/hugoThemes.git", os.path.join(path,sitename,"themes")], stderr=subprocess.STDOUT,universal_newlines=True)
 		except:
 			sublime.error_message("git not installed or path not set")
 
@@ -85,4 +85,4 @@ class HugosetthemeCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
 		setvars()
 		sublime.active_window().show_input_panel("Enter theme name", "", self.on_done, self.on_change, self.on_cancel)
-		
+

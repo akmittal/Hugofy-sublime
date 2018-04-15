@@ -1,20 +1,20 @@
 # Hugofy
 
-#Intro
+## Intro
 Hugofy is a plugin for Sublime Text 3 to make life easier to use [Hugo static site generator](http://gohugo.io)
 
-#Features
+## Features
 *	Create new site
 *	Create new content
 *	Download themes
 *	Start Hugo server
 
-#Installation
+## Installation
 *	Download this repo as zip and extract it in ```Prefrences > Browse Packages``` Directory
 *	Use [Package control](https://packagecontrol.io/installation)
 
 
-#Usage
+## Usage
 Use command pallete ```Ctrl+Shift+P``` and type Hugofy
 ![Hugofy](http://i.imgur.com/2pAaB5f.png)
 

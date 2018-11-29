@@ -42,9 +42,15 @@ class HugoserverCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
 		setvars()
 		server=settings.get("Server")
-		theme=settings.get("DefaultTheme")
+		startCmd = ["hugo", "server"]
+		if server["THEME_FLAG"]:
+			startCmd = startCmd + ["--theme={}".format(server["THEME"])]
+		if server["DRAFTS_FLAG"]:
+			startCmd = startCmd + ["--buildDrafts"]
+
+		startCmd = startCmd + ["--watch", "--port={}".format(server["PORT"])] 
+
 		try:
-			startCmd = ["hugo", "server", "--theme={}".format(theme), "--buildDrafts", "--watch", "--port={}".format(server["PORT"])]
 			out=subprocess.Popen(startCmd,stderr=subprocess.STDOUT,universal_newlines=True)
 			sublime.status_message('Server Started: {}'.format(startCmd))
 		except:

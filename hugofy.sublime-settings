@@ -5,9 +5,9 @@
 	"Directory": "C:\\Users\\amitm\\OneDrive\\Documents\\Projects\\hugo\\mySite",
 	"Server":
 	{
-		"PORT": 8000 //server port number
-		"THEME_FLAG": true //use `--theme` flag
-		"DRAFTS_FLAG": true //use `--buildDrafts` flag
+		"PORT": 8000, //server port number
+		"THEME_FLAG": true, //use `--theme` flag
+		"DRAFTS_FLAG": true, //use `--buildDrafts` flag
 		"THEME": "bootstrap" //theme used by `--theme` flag
 	},
 	//website name
